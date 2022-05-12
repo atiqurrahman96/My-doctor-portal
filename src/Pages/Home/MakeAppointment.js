@@ -8,9 +8,9 @@ const MakeAppointment = () => {
             <div className='flex-1 hidden lg:block '>
                 <img className='mt-[-150px]' src={doctor} alt="" />
             </div>
-            <div className='flex-1'>
+            <div className='flex-1 px-5'>
                 <h2 className='text-primary text-xl font-bold'>Appointments</h2>
-                <h3 className='text-4xl font-bold text-white'>Make an appoint today</h3>
+                <h3 className='text-4xl font-bold text-white py-5'>Make an appoint today</h3>
                 <p className='text-white'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat non vel itaque dicta autem quos facilis odio velit, sint earum hic quaerat quam? Fugiat, officia. Aut debitis aliquid molestias? Dicta quasi expedita reprehenderit itaque veritatis quam. Esse aut enim blanditiis!</p>
                 <MainButton>Get Started</MainButton>
             </div>
