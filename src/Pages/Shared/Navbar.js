@@ -1,35 +1,45 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, NavLink } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
-    // we can declare a variable when we get same things many places
+    // we can declare a variable when we get same things many places such as menuitems
+    // if we would like to implement custom link only , we  can use navlink for implementing custom link because of using tailwind css 
+    const [user] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth);
+    };
     const menuitems = <>
         <li>
-            <Link to="/home">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/appointments">Appointments</Link>
-            <Link to="/reviews">Reviews</Link>
-            <Link to="/contact">Contact us</Link>
-            <Link to="/login">Log In</Link>
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/appointments">Appointments</NavLink>
+            <NavLink to="/reviews">Reviews</NavLink>
+            <NavLink to="/contact">Contact us</NavLink>
+            {user ?
+                <button onClick={logout} className="btn btn-active btn-link ">Sign out</button> :
+                <NavLink to="/login">Log In</NavLink>}
         </li>
     </>
     return (
         <div>
-            <div class="navbar bg-base-100">
-                <div class="navbar-start">
-                    <div class="dropdown">
-                        <label tabindex="0" class="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            <div className="navbar bg-base-100">
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <label tabindex="0" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {menuitems}
 
                         </ul>
                     </div>
-                    <a class="btn btn-ghost normal-case text-xl">Doctors Portals</a>
+                    <a className="btn btn-ghost normal-case text-xl">Doctors Portals</a>
                 </div>
-                <div class="navbar-center hidden lg:flex">
-                    <ul class="menu menu-horizontal p-0 ">
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal p-0 ">
 
                         {menuitems}
 

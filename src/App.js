@@ -10,6 +10,8 @@ import Appointments from './Pages/Appointments/Appointments';
 import Reviews from './Pages/Reviews/Reviews';
 import Contact from './Pages/Contact/Contact';
 import Login from './Pages/Shared/Login';
+import SignUp from './Pages/Shared/SignUp';
+import RequireAuth from './Pages/Shared/RequireAuth';
 
 function App() {
   return (
@@ -19,10 +21,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/appointments" element={<Appointments />} />
+        <Route path="/appointments" element={<RequireAuth>
+          <Appointments />
+        </RequireAuth>} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
 
     </div>
