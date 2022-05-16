@@ -18,6 +18,9 @@ const Navbar = () => {
             <NavLink to="/appointments">Appointments</NavLink>
             <NavLink to="/reviews">Reviews</NavLink>
             <NavLink to="/contact">Contact us</NavLink>
+            {
+                user && <NavLink to="/dashboard">Dashboard</NavLink>
+            }
             {user ?
                 <button onClick={logout} className="btn btn-active btn-link ">Sign out</button> :
                 <NavLink to="/login">Log In</NavLink>}
@@ -31,6 +34,7 @@ const Navbar = () => {
                         <label tabindex="0" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
+
                         <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {menuitems}
 
@@ -46,7 +50,12 @@ const Navbar = () => {
 
                     </ul>
                 </div>
+                <div className="navbar-end">
+                    <label tabindex="1" for="my-drawer-2" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
 
+                </div>
             </div>
         </div>
     );

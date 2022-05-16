@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import { useForm } from "react-hook-form";
 import Loading from './Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [
@@ -16,9 +16,8 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     // reset password
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(
-        auth
-    );
+
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -100,7 +99,7 @@ const Login = () => {
                         </div>
                         <input className='btn w-full mx-auto' type="submit" value="LogIn" />
                         <p>New to Doctor Portal?<Link className='text-green-500 m-2 text-xl' to='/signup'>Sign Up</Link> </p>
-                        <p>Forget password?<button class="btn btn-sm">Reset password</button></p>
+                        <p>Forget password?<Link to='/reset'>Reset Password</Link></p>
                     </form>
 
                     <div className="divider">OR</div>
