@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const Activities = () => {
@@ -10,7 +10,7 @@ const Activities = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/booking?patientEmail=${user?.email}`, {
+            fetch(`https://vast-bayou-22125.herokuapp.com/booking?patientEmail=${user?.email}`, {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -44,16 +44,25 @@ const Activities = () => {
                             <th>Date</th>
                             <th>Time</th>
                             <th>Treatment</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            appointments.map((a, index) => <tr>
+                            appointments.map((a, index) => <tr key={a._id}>
+
                                 <th>{index + 1}</th>
                                 <td>{a.patientName}</td>
                                 <td>{a.date}</td>
                                 <td>{a.slot}</td>
                                 <td>{a.treatmentName}</td>
+                                <td>{(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}><button className='btn btn-xm btn-success'>Pay</button></Link>}</td>
+                                <td>{(a.price && a.paid) &&
+                                    <div>
+                                        <p className='text-success'>Paid</p>
+                                        <p>Transaction Id:{a.transactionId}</p>
+                                    </div>
+                                }</td>
                             </tr>)
                         }
 

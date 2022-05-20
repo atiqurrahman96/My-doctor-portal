@@ -21,6 +21,9 @@ import Review from './Pages/DashBoard/Review';
 import History from './Pages/DashBoard/History';
 import Users from './Pages/DashBoard/Users';
 import RequireAdmin from './Pages/Shared/RequireAdmin';
+import AddDoctor from './Pages/DashBoard/AddDoctor';
+import ManageDoctor from './Pages/DashBoard/ManageDoctor';
+import Payment from './Pages/DashBoard/Payment';
 
 
 
@@ -44,7 +47,10 @@ function App() {
           <Route index element={<Appointment />}></Route>
           <Route path='review' element={<Review />}></Route>
           <Route path='history' element={<History />}></Route>
+          <Route path='payment/:appointmentId' element={<Payment />}></Route>
           <Route path='users' element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
+          <Route path='insertDoctor' element={<RequireAdmin><AddDoctor></AddDoctor></RequireAdmin>}></Route>
+          <Route path='manageDoctor' element={<RequireAdmin><ManageDoctor></ManageDoctor></RequireAdmin>}></Route>
         </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />

@@ -12,7 +12,7 @@ const AvailableAppointments = ({ date }) => {
     const [treatment, setTreatment] = useState(null);
     const formattedDate = format(date, 'PP');
     const { refetch, isLoading, data: services } = useQuery(['available', formattedDate], () =>
-        fetch(`http://localhost:5000/available?date=${formattedDate}`)
+        fetch(`https://vast-bayou-22125.herokuapp.com/available?date=${formattedDate}`)
             .then(res =>
                 res.json()
             )
@@ -25,7 +25,7 @@ const AvailableAppointments = ({ date }) => {
 
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    //     fetch(`https://vast-bayou-22125.herokuapp.com/available?date=${formattedDate}`)
     //         .then(res => res.json())
     //         .then(data => setServices(data))
     // }, [])
@@ -38,6 +38,7 @@ const AvailableAppointments = ({ date }) => {
                         key={service._id}
                         service={service}
                         setTreatment={setTreatment}
+
                     >
                     </Service>)
                 }
